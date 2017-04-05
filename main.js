@@ -34,7 +34,7 @@ try {
 
 
 const accessToken = (() => {
-  if (process.argv.length !== 4) {
+  if (process.argv.length !== 3) {
     console.log('usage: node examples/quickstart.js 55W6R2FIBKUUIUXQQ6DSOU7HDNZ2BVLB');
     process.exit(1);
   }

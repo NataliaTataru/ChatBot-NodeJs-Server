@@ -15,6 +15,7 @@ const jQuery = require('jquery');
 const $ = require('jquery');
 var request = require('sync-request');
 var globalContext = "";
+const access_token = "55W6R2FIBKUUIUXQQ6DSOU7HDNZ2BVLB";
 
 
 var express = require('express');
@@ -32,7 +33,7 @@ try {
 }
 
 
-const access_token = "55W6R2FIBKUUIUXQQ6DSOU7HDNZ2BVLB";
+
 const accessToken = (() => {
 //  if (process.argv.length !== 3) {
 //    console.log('usage: node examples/quickstart.js 55W6R2FIBKUUIUXQQ6DSOU7HDNZ2BVLB');

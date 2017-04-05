@@ -128,7 +128,7 @@ const actions = {
   }
 };
 
-const client = new Wit({accessToken, actions});
+//const client = new Wit({accessToken, actions});
 
 
 
@@ -175,12 +175,6 @@ else{
 }
 
 
-
-
-
-});
-
-
 if (require.main === module) {
   console.log("Bot testing mode.");
   const client = new Wit({accessToken, actions});
@@ -190,4 +184,6 @@ else{
 interactive(client);
 }
 
+
+})
 app.listen(1337);

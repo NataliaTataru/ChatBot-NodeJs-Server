@@ -39,7 +39,7 @@ const accessToken = (() => {
 //    console.log('usage: node examples/quickstart.js 55W6R2FIBKUUIUXQQ6DSOU7HDNZ2BVLB');
 //    process.exit(1);
 //  }
-  return access_token;
+  return "55W6R2FIBKUUIUXQQ6DSOU7HDNZ2BVLB";
 })();
 
 // Quickstart example

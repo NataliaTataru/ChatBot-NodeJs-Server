@@ -15,7 +15,6 @@ const jQuery = require('jquery');
 const $ = require('jquery');
 var request = require('sync-request');
 var globalContext = "";
-var access_token = "55W6R2FIBKUUIUXQQ6DSOU7HDNZ2BVLB";
 
 
 var express = require('express');
@@ -35,11 +34,11 @@ try {
 
 
 const accessToken = (() => {
-//  if (process.argv.length !== 3) {
-//    console.log('usage: node examples/quickstart.js 55W6R2FIBKUUIUXQQ6DSOU7HDNZ2BVLB');
-//    process.exit(1);
-//  }
-  return "55W6R2FIBKUUIUXQQ6DSOU7HDNZ2BVLB";
+  if (process.argv.length !== 3) {
+    console.log('usage: node examples/quickstart.js 55W6R2FIBKUUIUXQQ6DSOU7HDNZ2BVLB');
+    process.exit(1);
+  }
+  return process.argv[2];
 })();
 
 // Quickstart example
@@ -129,12 +128,12 @@ const actions = {
   }
 };
 
-const client = new Wit({access_token, actions});
+const client = new Wit({accessToken, actions});
 
 
 if (require.main === module) {
   console.log("Bot testing mode.");
-  const client = new Wit({access_token, actions});
+  const client = new Wit({accessToken, actions});
   interactive(client);
 }
 else{

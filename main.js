@@ -182,7 +182,7 @@ else{
 if (require.main === module) {
   console.log("Bot testing mode.");
   //const client = new Wit({accessToken, actions});
-  interactive(client);
+  //interactive(client);
 }
 else{
     console.log("Console mode");

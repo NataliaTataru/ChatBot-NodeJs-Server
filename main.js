@@ -15,7 +15,7 @@ const jQuery = require('jquery');
 const $ = require('jquery');
 var request = require('sync-request');
 var globalContext = "";
-const access_token = "55W6R2FIBKUUIUXQQ6DSOU7HDNZ2BVLB";
+var access_token = "55W6R2FIBKUUIUXQQ6DSOU7HDNZ2BVLB";
 
 
 var express = require('express');

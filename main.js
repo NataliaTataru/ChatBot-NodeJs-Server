@@ -131,14 +131,7 @@ const actions = {
 const client = new Wit({accessToken, actions});
 
 
-if (require.main === module) {
-  console.log("Bot testing mode.");
-  const client = new Wit({accessToken, actions});
-  interactive(client);
-}
-else{
-interactive(client);
-}
+
 //var request = require('sync-request');
 
 var port = 8001;
@@ -180,5 +173,17 @@ app.get('/converse', function (req, res) {
 else{
   res.send(JSON.parse(response.getBody('utf8')));
 }
+
+
+if (require.main === module) {
+  console.log("Bot testing mode.");
+  const client = new Wit({accessToken, actions});
+  interactive(client);
+}
+else{
+interactive(client);
+}
+
+
 })
 app.listen(1337);

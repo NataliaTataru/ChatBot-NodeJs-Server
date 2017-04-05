@@ -179,12 +179,12 @@ else{
 
 
 });
-if (require.main === module) {
+//if (require.main === module) {
   console.log("Bot testing mode.");
   const client = new Wit({accessToken, actions});
   interactive(client);
-}
-else{
-interactive(client);
-};
+//}
+//else{
+//interactive(client);
+//};
 app.listen(process.env.PORT || 5000);

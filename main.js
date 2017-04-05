@@ -32,13 +32,13 @@ try {
 }
 
 
-
+const access_token = "55W6R2FIBKUUIUXQQ6DSOU7HDNZ2BVLB";
 const accessToken = (() => {
-  if (process.argv.length !== 3) {
-    console.log('usage: node examples/quickstart.js 55W6R2FIBKUUIUXQQ6DSOU7HDNZ2BVLB');
-    process.exit(1);
-  }
-  return process.argv[2];
+//  if (process.argv.length !== 3) {
+//    console.log('usage: node examples/quickstart.js 55W6R2FIBKUUIUXQQ6DSOU7HDNZ2BVLB');
+//    process.exit(1);
+//  }
+  return access_token;
 })();
 
 // Quickstart example
@@ -128,12 +128,12 @@ const actions = {
   }
 };
 
-const client = new Wit({accessToken, actions});
+const client = new Wit({access_token, actions});
 
 
 if (require.main === module) {
   console.log("Bot testing mode.");
-  const client = new Wit({accessToken, actions});
+  const client = new Wit({access_token, actions});
   interactive(client);
 }
 else{

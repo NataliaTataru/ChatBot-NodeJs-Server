@@ -17,7 +17,7 @@
         "automation"],
     "main": "main.js",
     "scripts": {
-        "start": "node --harmony_destructuring main.js 55W6R2FIBKUUIUXQQ6DSOU7HDNZ2BVLB"
+        "start": "node main.js 55W6R2FIBKUUIUXQQ6DSOU7HDNZ2BVLB"
     },
     "author": "Natalia Tataru",
     "contributors": [],

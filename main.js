@@ -91,15 +91,16 @@ const actions = {
  
         //CALL EM
        
-    $.ajax({
-        type: 'GET',
-        url: 'http://localhost:8080/RestTest/com.airhacks.chatuser',
-        dataType: "json", // data type of response
-        success: function(response){
-            console.log(response);
-        }
-    });
-
+//    $.ajax({
+//        type: 'GET',
+//        url: 'http://localhost:8080/RestTest/com.airhacks.chatuser',
+//        dataType: "json", // data type of response
+//        success: function(response){
+//            console.log(response);
+//        }
+//    });
+        var resDB = request('GET','http://localhost:8080/RestTest/resources/com.airhacks.chatuser');
+        console.log("******************* DBBBBBB   "+resDB.getBody());
 
         var contact = firstEntityValue(entities, 'contact');
         console.log("CONTACT:   " + contact);

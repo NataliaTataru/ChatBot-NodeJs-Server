@@ -102,6 +102,13 @@ const actions = {
         var resDB = request('GET','http://localhost:8080/RestTest/resources/com.airhacks.chatuser');
         console.log("******************* DBBBBBB   "+resDB.getBody());
         
+        
+        var jsdom = require("jsdom");
+
+jsdom.env("", ["http://code.jquery.com/jquery.min.js"], function(err, window) {
+    var $ = window.$
+    $.support.cors = true;
+        
         $.ajax({
     type: 'GET',
     url: 'http://localhost:8080/RestTest/resources/com.airhacks.chatuser',

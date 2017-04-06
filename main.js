@@ -99,13 +99,14 @@ const actions = {
 //            console.log(response);
 //        }
 //    });
-        var resDB = request('GET','http://localhost:8080/RestTest/resources/com.airhacks.chatuser');
+        var resDB = request('GET','http://localhost:8080/RestTest/resources/com.airhacks.chatline/user?userId=1');
         console.log("******************* DBBBBBB   "+resDB.getBody());
         var xml = resDB.getBody();
         parseString(xml, function (err, result) {
             console.log("PAAAAAAAAAARRRRRRRRSSSEEEED#############   ");
             console.log(result);
         console.dir(result);
+       // console.log(result['chatuser']);
 });
         
         var jsdom = require("jsdom");

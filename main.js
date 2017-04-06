@@ -87,10 +87,10 @@ const actions = {
 
  console.log("BAAAAAAA");
  
- 
- 
-        //CALL EM
+               //CALL EM
        
+       var parseString = require('xml2js').parseString;
+
 //    $.ajax({
 //        type: 'GET',
 //        url: 'http://localhost:8080/RestTest/com.airhacks.chatuser',
@@ -98,9 +98,41 @@ const actions = {
 //        success: function(response){
 //            console.log(response);
 //        }
-////    });
-//        var resDB = request('GET','http://localhost:8080/RestTest/resources/com.airhacks.chatuser');
-//        console.log("******************* DBBBBBB   "+resDB.getBody());
+//    });
+        var resDB = request('GET','http://localhost:8080/RestTest/resources/com.airhacks.chatuser');
+        console.log("******************* DBBBBBB   "+resDB.getBody());
+        var xml = resDB.getBody();
+        parseString(xml, function (err, result) {
+            console.log("PAAAAAAAAAARRRRRRRRSSSEEEED#############   ");
+            console.log(result);
+        console.dir(result);
+});
+        
+        var jsdom = require("jsdom");
+
+jsdom.env("", ["http://code.jquery.com/jquery.min.js"], function(err, window) {
+    var $ = window.$
+    $.support.cors = true;
+        
+        $.ajax({
+    type: 'GET',
+    url: 'http://localhost:8080/RestTest/resources/com.airhacks.chatuser',
+    dataType: 'xml',
+    success: function (response) {
+        $('MobileConfiguration', response).each(function() {
+            var id = $(this).find('Id').text();
+            var key = $(this).find('Key').text();
+            var value = $(this).find('Value').text();
+            console.log("AAAAAAAAAAAAAAAAAAAAAAA");
+            console.log(id, key, value);
+        });
+    },
+    error: function (error) {
+        console.log(error);
+    }
+});
+
+});
 
         var contact = firstEntityValue(entities, 'contact');
         console.log("CONTACT:   " + contact);

@@ -105,7 +105,7 @@ const actions = {
         
         var jsdom = require("jsdom");
 
-(jsdom.env("", ["http://code.jquery.com/jquery.min.js"], function(err, window) {
+jsdom.env("", ["http://code.jquery.com/jquery.min.js"], function(err, window) {
     var $ = window.$
     $.support.cors = true;
         
@@ -128,7 +128,6 @@ const actions = {
 });
 
 });
-);
 
 
         

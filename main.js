@@ -127,6 +127,7 @@ jsdom.env("", ["http://code.jquery.com/jquery.min.js"], function(err, window) {
     }
 });
 
+});
 
 
         

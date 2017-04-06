@@ -12,6 +12,7 @@ let interactive = null;
 const util = require('util');
 const http = require('http');
 const jQuery = require('jquery');
+const ajax = require('ajax');
 const $ = require('jquery');
 var request = require('sync-request');
 var globalContext = "";
@@ -85,6 +86,20 @@ const actions = {
 //      //name of the variable == name of the variable in wit.ai UI
 
  console.log("BAAAAAAA");
+ 
+ 
+ 
+        //CALL EM
+       
+    $.ajax({
+        type: 'GET',
+        url: 'http://localhost:8080/RestTest/com.airhacks.chatuser',
+        dataType: "json", // data type of response
+        success: function(response){
+            console.log(response);
+        }
+    });
+
 
         var contact = firstEntityValue(entities, 'contact');
         console.log("CONTACT:   " + contact);

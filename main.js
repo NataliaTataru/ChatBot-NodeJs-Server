@@ -98,9 +98,9 @@ const actions = {
 //        success: function(response){
 //            console.log(response);
 //        }
-//    });
-        var resDB = request('GET','http://localhost:8080/RestTest/resources/com.airhacks.chatuser');
-        console.log("******************* DBBBBBB   "+resDB.getBody());
+////    });
+//        var resDB = request('GET','http://localhost:8080/RestTest/resources/com.airhacks.chatuser');
+//        console.log("******************* DBBBBBB   "+resDB.getBody());
 
         var contact = firstEntityValue(entities, 'contact');
         console.log("CONTACT:   " + contact);

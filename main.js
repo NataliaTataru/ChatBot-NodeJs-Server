@@ -101,7 +101,7 @@ const actions = {
 //            console.log(response);
 //        }
 //    });
-        var resDB = request('GET','http://localhost:8080/RestTest/resources/com.airhacks.chatline?userId=1');
+        var resDB = request('GET','http://localhost:8080/RestTest/resources/com.airhacks.chatuser');
         console.log("******************* DBBBBBB   "+resDB.getBody());
         var xml = resDB.getBody();
         parseString(xml, function (err, result) {

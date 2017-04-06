@@ -111,7 +111,7 @@ const actions = {
       //  var json = require('JSON').parse(result['chatLines'].chatLine.object);
         console.log("))))))))))))))))))))))))))");
         console.log(typeof(result));
-        console.log(result['chatLines'].chatLine.object.toString());
+        console.log(require('JSON').stringify(result));
 });
         
         var jsdom = require("jsdom");

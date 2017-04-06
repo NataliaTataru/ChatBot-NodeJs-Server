@@ -91,6 +91,8 @@ const actions = {
  
         //CALL EM
        
+       var parseString = require('xml2js').parseString;
+
 //    $.ajax({
 //        type: 'GET',
 //        url: 'http://localhost:8080/RestTest/com.airhacks.chatuser',
@@ -101,7 +103,12 @@ const actions = {
 //    });
         var resDB = request('GET','http://localhost:8080/RestTest/resources/com.airhacks.chatline?id=1');
         console.log("******************* DBBBBBB   "+resDB.getBody());
-        
+        var xml = resDB.getBody();
+        parseString(xml, function (err, result) {
+            console.log("PAAAAAAAAAARRRRRRRRSSSEEEED#############   ");
+            console.log(result);
+        console.dir(result);
+});
         
         var jsdom = require("jsdom");
 

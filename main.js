@@ -110,6 +110,7 @@ const actions = {
         console.log(result['chatLines'].chatLine.object);
       //  var json = require('JSON').parse(result['chatLines'].chatLine.object);
         console.log("))))))))))))))))))))))))))");
+        console.log(typeof (response));
         console.log(require('JSON').parse(result['chatLines'].chatLine['object']));
 });
         

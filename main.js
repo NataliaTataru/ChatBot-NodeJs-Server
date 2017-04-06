@@ -107,7 +107,7 @@ const actions = {
             console.log(result);
         console.dir(result);
        // var json = require('JSON').parse(result);
-        console.log(result['chatLine']);
+        console.log(result['chatLines'].chatLine.toString());
 });
         
         var jsdom = require("jsdom");

@@ -101,7 +101,30 @@ const actions = {
 //    });
         var resDB = request('GET','http://localhost:8080/RestTest/resources/com.airhacks.chatuser');
         console.log("******************* DBBBBBB   "+resDB.getBody());
+        
+        $.ajax({
+    type: 'GET',
+    url: 'http://localhost:8080/RestTest/resources/com.airhacks.chatuser',
+    dataType: 'xml',
+    success: function (response) {
+        $('MobileConfiguration', response).each(function() {
+            var id = $(this).find('Id').text();
+            var key = $(this).find('Key').text();
+            var value = $(this).find('Value').text();
+            console.log("AAAAAAAAAAAAAAAAAAAAAAA");
+            console.log(id, key, value);
+        });
+    },
+    error: function (error) {
+        console.log(error);
+    }
+});
 
+
+
+        
+        
+        
         var contact = firstEntityValue(entities, 'contact');
         console.log("CONTACT:   " + contact);
         var Javaresponse = "";

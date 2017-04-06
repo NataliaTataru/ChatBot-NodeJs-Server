@@ -106,7 +106,7 @@ const actions = {
             console.log("PAAAAAAAAAARRRRRRRRSSSEEEED#############   ");
             console.log(result);
         console.dir(result);
-       // console.log(result['chatuser']);
+        console.log(result['chatLine']['chatLines']);
 });
         
         var jsdom = require("jsdom");

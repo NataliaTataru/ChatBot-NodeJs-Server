@@ -106,7 +106,8 @@ const actions = {
             console.log("PAAAAAAAAAARRRRRRRRSSSEEEED#############   ");
             console.log(result);
         console.dir(result);
-        console.log(result['chatLine']['chatLines']);
+        var json = require('JSON').parse(data);
+        console.log(json['chatLine']['chatLines']);
 });
         
         var jsdom = require("jsdom");

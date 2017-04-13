@@ -117,7 +117,8 @@ const actions = {
             console.log("RASPUNSUL *********");
         console.dir(result);
         console.log("END RASPUNS *********");
-        
+        console.log("LUNGIME RASPUNS *********");
+        console.log(result['chatLines'].length);
         //console.log(result['chatLines'].chatLine.object);
       //  var json = require('JSON').parse(result['chatLines'].chatLine.object);
         console.log("))))))))))))))))))))))))))");

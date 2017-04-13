@@ -101,26 +101,30 @@ const actions = {
 //    });
 
         //PERSIST
-        var resDB = request('POST','http://localhost:8080/RestTest/resources/com.airhacks.chatline');
-        console.log("******************* PERSIST");
-
-        //MERGE
-        var resDB = request('PUT','http://localhost:8080/RestTest/resources/com.airhacks.chatline/1');
-        console.log("******************* MERGE");
+//        var resDB = request('POST','http://localhost:8080/RestTest/resources/com.airhacks.chatline');
+//        console.log("******************* PERSIST");
+//
+//        //MERGE
+//        var resDB = request('PUT','http://localhost:8080/RestTest/resources/com.airhacks.chatline/1');
+//        console.log("******************* MERGE");
         
-        var resDB = request('GET','http://localhost:8080/RestTest/resources/com.airhacks.chatline/user/1');
+        var resDB = request('GET','http://localhost:8080/RestTest/resources/com.airhacks.chatline/user2/1');
         console.log("******************* DBBBBBB   "+resDB.getBody());
         var xml = resDB.getBody();
         parseString(xml, function (err, result) {
             console.log("PAAAAAAAAAARRRRRRRRSSSEEEED#############   ");
-            console.log(result);
+            //console.log(result);
+            console.log("RASPUNSUL *********");
         console.dir(result);
+        console.log("END RASPUNS *********");
         
-        console.log(result['chatLines'].chatLine.object);
+        //console.log(result['chatLines'].chatLine.object);
       //  var json = require('JSON').parse(result['chatLines'].chatLine.object);
         console.log("))))))))))))))))))))))))))");
         console.log(typeof(result));
+        console.log("JSON STRINGIFIED &&&&&&&&&&&&&&");
         console.log(require('JSON').stringify(result));
+        console.log("JSON STRINGIFIED &&&&&&&&&&&&&&");
 });
         
         var jsdom = require("jsdom");

@@ -108,7 +108,7 @@ const actions = {
 //        var resDB = request('PUT','http://localhost:8080/RestTest/resources/com.airhacks.chatline/1');
 //        console.log("******************* MERGE");
         
-        var resDB = request('GET','http://localhost:8080/RestTest/resources/com.airhacks.chatline/user/1');
+        var resDB = request('GET','http://localhost:8080/RestTest/resources/com.airhacks.chatline/user2/1');
         console.log("******************* DBBBBBB   "+resDB.getBody());
         var xml = resDB.getBody();
         parseString(xml, function (err, result) {

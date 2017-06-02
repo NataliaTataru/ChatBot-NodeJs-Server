@@ -24,6 +24,8 @@
   "contributors": [],
   "dependencies": {
     "ajax": "0.0.4",
+    "express": "^4.15.3",
+    "http": "0.0.0",
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.2.1",
     "sync-request": "^4.0.3",

@@ -11,9 +11,9 @@ let Wit = null;
 let interactive = null;
 const util = require('util');
 const http = require('http');
-const jQuery = require('jquery');
+//const jQuery = require('jquery');
 const ajax = require('ajax');
-const $ = require('jquery');
+//const $ = require('jquery');
 var request = require('sync-request');
 var globalContext = "";
 

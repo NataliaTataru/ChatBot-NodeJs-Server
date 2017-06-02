@@ -108,7 +108,7 @@ const actions = {
 //        var resDB = request('PUT','http://localhost:8080/RestTest/resources/com.airhacks.chatline/1');
 //        console.log("******************* MERGE");
         
-        var resDB = request('GET','http://localhost:8080/RestTest/resources/com.airhacks.chatline/userId/2');
+        var resDB = request('GET','http://localhost:8080/RestTest/resources/com.airhacks.chatrest.chatline/userId2/2');
         console.log("******************* DBBBBBB   "+resDB.getBody());
         var xml = resDB.getBody();
         parseString(xml, function (err, result) {
@@ -136,7 +136,7 @@ jsdom.env("", ["http://code.jquery.com/jquery.min.js"], function(err, window) {
         
         $.ajax({
     type: 'GET',
-    url: 'http://localhost:8080/RestTest/resources/com.airhacks.chatuser',
+    url: 'http://localhost:8080/RestTest/resources/com.airhacks.chatrest.chatuser',
     dataType: 'xml',
     success: function (response) {
         $('MobileConfiguration', response).each(function() {
@@ -183,7 +183,7 @@ jsdom.env("", ["http://code.jquery.com/jquery.min.js"], function(err, window) {
         
          if (contact) {
 
-                    context.Name = " " + res.getBody() + " " + contact;
+                    context.Name = res.getBody() + " " + contact;
                     globalContext += context;
 
                 } else {

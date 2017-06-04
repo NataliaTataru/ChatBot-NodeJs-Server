@@ -82,6 +82,23 @@ const actions = {
   },
   
   
+  getValoareCreditSolicitata({context, entities}) {
+      
+       console.log("BAAAAAAA");
+      
+    var valoare_credit = firstEntityValue(entities, 'valoare_credit');
+    console.log("VALOARE CREDIT-----");
+    console.log(valoare_credit);
+    
+    if(valoare_credit) {
+        context.valoareCredit = "Merge";
+    }
+    
+    
+    return context;
+  },
+  
+  
   getName({context,entities}) {
 //      //name of the variable == name of the variable in wit.ai UI
 
@@ -91,22 +108,6 @@ const actions = {
        
        var parseString = require('xml2js').parseString;
 
-//    $.ajax({
-//        type: 'GET',
-//        url: 'http://localhost:8080/RestTest/com.airhacks.chatuser',
-//        dataType: "json", // data type of response
-//        success: function(response){
-//            console.log(response);
-//        }
-//    });
-
-        //PERSIST
-//        var resDB = request('POST','http://localhost:8080/RestTest/resources/com.airhacks.chatline');
-//        console.log("******************* PERSIST");
-//
-//        //MERGE
-//        var resDB = request('PUT','http://localhost:8080/RestTest/resources/com.airhacks.chatline/1');
-//        console.log("******************* MERGE");
         
         var resDB = request('GET','http://localhost:8080/RestTest/resources/com.airhacks.chatrest.chatline/userId2/2');
         console.log("******************* DBBBBBB   "+resDB.getBody());
@@ -216,7 +217,7 @@ app.get('/converse', function (req, res) {
     'headers': {
       'Content-Type': 'application/json; charset=utf8',
       "Accept": "application/json",
-      "Authorization": "Bearer 55W6R2FIBKUUIUXQQ6DSOU7HDNZ2BVLB"
+      "Authorization": "Bearer LXLEUXXD7MKAG3YGKXQOB2VUDCG3G44F"
     }
   });
   

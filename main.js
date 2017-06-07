@@ -17,6 +17,11 @@ const $ = require('jquery');
 var request = require('sync-request');
 var globalContext = "";
 
+var branch1 = 0;
+var branch2 = 0;
+
+var creditVal;
+
 
 var express = require('express');
 var app = express();
@@ -90,13 +95,100 @@ const actions = {
     console.log("VALOARE CREDIT-----");
     console.log(valoare_credit);
     
+    creditVal = valoare_credit;
+    
+//    var valoare_venit = firstEntityValue(entities, 'venit_lunar');
+    
     if(valoare_credit) {
-        context.valoareCredit = "Merge";
+        context.valoareCredit = "Ce venit lunar aveti [in RON]?";
+        console.log("FOUND VALOARE CREDIT");
+        console.log(valoare_credit);
+    }
+//    if(valoare_venit) {
+//        context.valoareCredit = "Ce venit lunar aveti [in RON]?";
+//        console.log("FOUND VALOARE VENIT");
+//         console.log(valoare_venit);
+//    }
+    
+    
+    return context;
+  },
+  getOffers1({context, entities}) {
+      
+       console.log("OFFERS 1--------");
+      
+    var venit_lunar = firstEntityValue(entities, 'venit_lunar');
+    console.log("VALOARE VENIT LUNAR-----");
+    console.log(venit_lunar);
+    console.log(context.quickreplies);
+    
+//    var response = request('POST','http://127.0.0.1:5000/converse?session_id=123');
+//        console.log("*******************    "+response.getBody());
+           
+           
+    
+    if(venit_lunar && creditVal) {
+        console.log("Venit lunar si valoare credit solicitata:");
+        console.log(venit_lunar);
+        console.log(creditVal);
+            context.valoareVenit = "Va pot sugera urmatoarele oferte..." + context.quickreplies;
     }
     
     
     return context;
   },
+  
+   getOffers2({context, entities}) {
+      
+       console.log("OFFERS 2--------");
+      
+    var venit_lunar2 = firstEntityValue(entities, 'venit_lunar2');
+    console.log("VALOARE VENIT LUNAR-----");
+    console.log(venit_lunar2);
+    console.log(context.quickreplies);
+    
+//    var response = request('POST','http://127.0.0.1:5000/converse?session_id=123');
+//        console.log("*******************    "+response.getBody());
+           
+           
+    
+    if(venit_lunar2) {
+        console.log("Venit lunar FARA valoare credit solicitata:");
+        console.log(venit_lunar2);
+       
+            context.valoareVenit2 = "Va pot sugera urmatoarele oferte..." + context.quickreplies;
+    }
+    
+    
+    return context;
+  },
+  
+  
+   getOfertaAleasa({context, entities}) {
+      
+       console.log("OFERTA ALEASA--------");
+      
+    var numar_oferta = firstEntityValue(entities, 'numar_oferta');
+    console.log("NUMAR OFERTA");
+    console.log(numar_oferta);
+   
+    
+//    var response = request('POST','http://127.0.0.1:5000/converse?session_id=123');
+//        console.log("*******************    "+response.getBody());
+           
+           
+    
+    if(numar_oferta) {
+//        console.log("Venit lunar si valoare credit solicitata:");
+        console.log(numar_oferta);
+//        console.log(creditVal);
+            context.numarOferta = "Ati ales " + numar_oferta;
+    }
+    
+    
+    return context;
+  },
+  
   
   
   getName({context,entities}) {
@@ -223,11 +315,31 @@ app.get('/converse', function (req, res) {
   
   
    var apiResponse = JSON.parse(response.getBody('utf8'));
+   
+   console.log("API RESPONSE ----------");
+    console.log(apiResponse);
+    var intent = apiResponse.entities.intent;
+    console.log("-----intent-----");
+    console.log(intent[0].value);
+    
+    if(intent[0].value === "valoare_maxima_credit"){
+        console.log("INTENT: valoare_maxima_credit");
+       
+       branch2 = 1;
+       banch1 = 0;
+    }
+      if(intent[0].value === "new_credit"){
+        console.log("INTENT: new_credit");
+       
+       branch2 = 0;
+       banch1 = 1;
+    }
+    
     if(apiResponse.type === "action"){
         console.log(apiResponse.action);
         if(apiResponse.action === "getName"){
             console.log('WAAAAAAAAAAAAAAAAAAAA');
-            console.log(actions);
+           // console.log(actions);
 //            console.log(actions["getName"]["Function"]);
             console.log(apiResponse.entities);
             var entitiesAction = apiResponse.entities
@@ -238,8 +350,86 @@ app.get('/converse', function (req, res) {
 //actions.getName();
             
         }
+        if(apiResponse.action === "getValoareCreditSolicitata"){
+            console.log('WAAAAAAAAAAAAAAAAAAAA');
+           // console.log(actions);
+//            console.log(actions["getName"]["Function"]);
+            console.log(apiResponse.entities);
+            var entitiesAction = apiResponse.entities
+           var botResponse = actions.getValoareCreditSolicitata({context:{},entities: entitiesAction});
+           console.log(botResponse);
+           response = {msg: botResponse['valoareCredit']};
+           res.send(response);
+//actions.getName();
+            
+        }
+        if(apiResponse.action === "getOffers1"){
+            console.log('WAAAAAAAAAAAAAAAAAAAA');
+           // console.log(actions);
+//            console.log(actions["getName"]["Function"]);
+            console.log(apiResponse.entities);
+            var entitiesAction = apiResponse.entities
+           var botResponse = actions.getOffers1({context:{},entities: entitiesAction});
+           console.log(botResponse);
+           
+//          
+        
+           
+           
+           response = {msg: botResponse['valoareVenit'], quickreplies: ["Oferta 1", "Oferta 2", "Oferta 3"], type:"msg"};
+//           response.quickreplies.map(x => {"title": x, "content_type": "text", "payload": "empty"});
+           res.send(response);
+//actions.getName();
+            
+        }
+         if(apiResponse.action === "getOffers2"){
+            console.log('WAAAAAAAAAAAAAAAAAAAA');
+           // console.log(actions);
+//            console.log(actions["getName"]["Function"]);
+            console.log(apiResponse.entities);
+            var entitiesAction = apiResponse.entities
+            
+           var botResponse = actions.getOffers2({context:{},entities: entitiesAction , quickreplies: ["Oferta 1", "Oferta 2", "Oferta 3"]});
+           console.log(botResponse);
+     
+           response = {msg: botResponse['valoareVenit'], quickreplies: ["Oferta 1", "Oferta 2", "Oferta 3"], type:"msg"};
+//           response.quickreplies.map(x => {"title": x, "content_type": "text", "payload": "empty"});
+           res.send(response);
+//actions.getName();
+            
+        }
+//        if(apiResponse.action === "getOfertaAleasa"){
+//            console.log('API actiune: getOfertaAleasa');
+//           // console.log(actions);
+////            console.log(actions["getName"]["Function"]);
+//            console.log(apiResponse.entities);
+//            var entitiesAction = apiResponse.entities
+//           var botResponse = actions.getOfertaAleasa({context:{},entities: entitiesAction});
+//           console.log(botResponse);
+//           response = {msg: botResponse['numarOferta']};
+//           res.send(response);
+////actions.getName();
+//            
+//        }
     }  
-else{
+else
+
+     if(intent[0].value === "selectare_oferta"){
+        console.log("SELECTARE OFERTA");
+        console.log('API actiune: getOfertaAleasa');
+           // console.log(actions);
+//            console.log(actions["getName"]["Function"]);
+            console.log(apiResponse.entities);
+            var entitiesAction = apiResponse.entities
+           var botResponse = actions.getOfertaAleasa({context:{},entities: entitiesAction});
+           console.log(botResponse);
+           response = {msg: botResponse['numarOferta']};
+           res.send(response);
+        
+    }
+   
+    else
+    {
   res.send(JSON.parse(response.getBody('utf8')));
 }
 

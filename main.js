@@ -541,6 +541,40 @@ var app = express()
 
 
 
+app.get('/samples', function (req, res) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  var data = [{
+                    "text": "venitul meu este de 3400 RON",
+                    "entities": [
+                        {"entity": "intent",
+                            "value": "get_venit_lunar"},
+                        {"entity": "valoare_venit_lunar",
+                            "start": 21,
+                            "end": 25,
+                            "value": "3400"}],
+                }];
+ 
+  var response = request('POST', 'https://api.wit.ai/samples?v=20170307', {
+    'json':
+        data
+    ,
+      'headers': {
+      'Content-Type': 'application/json; charset=utf8',
+      "Accept": "application/json",
+      "Authorization": "Bearer H6C3KOBY4KAGASXHC54VLSC3YMKLUFH3"
+    }
+  });
+  
+  var apiResponseTrain = JSON.parse(response.getBody('utf8'));
+   
+   console.log("API RESPONSE TRAIN----------");
+    console.log(apiResponseTrain);
+});
+
+
+
+
 app.get('/converse', function (req, res) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -766,7 +800,7 @@ app.get('/converse', function (req, res) {
 //actions.getName();
             
         }
-          if(intent[0].value === "get_venit_lunar" && previousIntent === "maximul_value_of_a_loan"){
+          if(intentPresent && intent[0].value === "get_venit_lunar" && previousIntent === "maximul_value_of_a_loan"){
         console.log("Previous intent is : maximul_value_of_a_loan");
        console.log('execute getOffersMaximumLoan');
            // console.log(actions);
@@ -845,7 +879,13 @@ app.get('/converse', function (req, res) {
 //        }
     }  
 else
-    
+    if(!intentPresent){
+        console.log("UNEXISTING INTENT");
+        console.log("send generic message for absent intent");
+ 
+           response = {msg:"Imi pare rau dar nu am inteles. Va rog sa repetati."};
+           res.send(response);
+    }
     if(intentPresent && intent[0].value === "maximum_value_of_a_loan" && (apiResponse.entities.valoare_credit == undefined || apiResponse.entities.valoare_credit == 'undefined' || apiResponse.entities.valoare_credit == null || apiResponse.entities.valoare_credit == '')){
         
          console.log("INTENT EAS :::::: maximum_value_of_a_loan");
@@ -875,7 +915,8 @@ else
            res.send(response);
         
     }
-     if(intent[0].value === "get_venit_lunar" && previousIntent === "maximul_value_of_a_loan"){
+    
+     if(intentPresent && intent[0].value === "get_venit_lunar" && previousIntent === "maximul_value_of_a_loan"){
         console.log("Previous intent is : maximul_value_of_a_loan");
        console.log('execute getOffersMaximumLoan');
            // console.log(actions);
